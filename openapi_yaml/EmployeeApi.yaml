@@ -1,0 +1,22 @@
+post:
+  tags:
+    - EmployeeRest
+  summary: Create Employee
+  operationId: createEmployee
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: './model/employee/EmployeeDetails.yaml'
+  responses:
+    '201':
+      description: Create Employee.
+      content:
+        application/json:
+          schema:
+            $ref: './model/employee/EmployeeDetails.yaml'
+    '400':
+      $ref: './model/error/BadRequest.yaml'
+    '500':
+      $ref: './model/error/ServerError.yaml'

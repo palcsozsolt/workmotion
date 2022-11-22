@@ -1,0 +1,14 @@
+openapi: '3.0.0'
+servers:
+  - url: http://localhost:8080/
+
+info:
+  version: 1.0.0
+  title: WorkMotion Homework API spec
+  
+paths:
+  /employee:
+    $ref: './EmployeeApi.yaml'
+    
+  /employee/{employeeId}:
+    $ref: './EmployeeDetailApi.yaml'

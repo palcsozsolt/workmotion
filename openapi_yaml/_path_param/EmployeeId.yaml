@@ -1,0 +1,6 @@
+in: path
+name: employeeId
+required: true
+schema:
+  type: string
+  format: uuid

@@ -1,0 +1,4 @@
+src/main/java/com/homework/workmotion/generated/api/EmployeeRestApi.java
+src/main/java/com/homework/workmotion/generated/dto/EmployeeDetails.java
+src/main/java/com/homework/workmotion/generated/dto/EmployeeState.java
+src/main/java/com/homework/workmotion/generated/dto/ErrorDetails.java

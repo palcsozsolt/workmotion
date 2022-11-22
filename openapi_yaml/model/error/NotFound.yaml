@@ -1,0 +1,5 @@
+description: Item with the specified ID was not found.
+content:
+  application/json:
+    schema:
+      $ref: './ErrorDetails.yaml'

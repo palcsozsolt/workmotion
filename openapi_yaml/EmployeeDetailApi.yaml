@@ -1,0 +1,47 @@
+get:
+  tags:
+    - EmployeeRest
+  summary: Get Employee
+  operationId: getEmployee
+  parameters:
+    - $ref: './_path_param/EmployeeId.yaml'
+  responses:
+    '200':
+      description: Read Employee.
+      content:
+        application/json:
+          schema:
+            $ref: './model/employee/EmployeeDetails.yaml'
+    '400':
+      $ref: './model/error/BadRequest.yaml'
+    '404':
+      $ref: './model/error/NotFound.yaml'
+    '500':
+      $ref: './model/error/ServerError.yaml'
+            
+put:
+  tags:
+    - EmployeeRest
+  summary: Update Employee
+  operationId: updateEmployee
+  parameters:
+    - $ref: './_path_param/EmployeeId.yaml'
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: './model/employee/EmployeeDetails.yaml'
+  responses:
+    '200':
+      description: Update Employee.
+      content:
+        application/json:
+          schema:
+            $ref: './model/employee/EmployeeDetails.yaml'
+    '400':
+      $ref: './model/error/BadRequest.yaml'
+    '404':
+      $ref: './model/error/NotFound.yaml'
+    '500':
+      $ref: './model/error/ServerError.yaml'

@@ -1,0 +1,21 @@
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+  name:
+    type: string
+  age:
+    type: integer
+    minimum: 0
+    maximum: 150
+  phone:
+    type: string
+  email:
+    type: string
+    format: email
+  address:
+    type: string
+  state:
+    $ref: './EmployeeState.yaml'

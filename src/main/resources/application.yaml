@@ -1,0 +1,62 @@
+name: docker-YAML
+environment: docker
+server:
+  port: 8080
+
+spring:
+  profiles: docker
+  datasource:
+    jdbcUrl: jdbc:mysql://mysql-workmotion:3306/workmotion?allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: pass
+
+hibernate:
+  dialect: org.hibernate.dialect.MySQL8Dialect
+  hibernate.show_sql: false
+  cache:
+    use_second_level_cache: false
+    use_query_cache: false
+
+---
+
+name: dev-YAML
+environment: docker
+server:
+  port: 8080
+
+spring:
+  profiles: dev
+  datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/workmotion?allowPublicKeyRetrieval=true&useSSL=false
+    username: user
+    password: pass
+
+hibernate:
+  dialect: org.hibernate.dialect.MySQL8Dialect
+  hibernate.show_sql: false
+  cache:
+    use_second_level_cache: false
+    use_query_cache: false
+
+---
+
+name: test-YAML
+environment: testing
+
+spring:
+  profiles: test
+  datasource:
+    jdbcUrl: jdbc:h2:mem:workmotion;
+    username: sa
+    password: sa
+  h2.console.enabled: true
+  jpa:
+    show-sql: true
+
+hibernate:
+  dialect: org.hibernate.dialect.H2Dialect
+  hibernate.show_sql: false
+  hbm2ddl.auto: create-drop
+  cache:
+    use_second_level_cache: false
+    use_query_cache: false

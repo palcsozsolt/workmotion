@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'org.openapi.generator' version '5.3.0'
 }
 
 group = 'com.homework'
@@ -12,9 +13,54 @@ repositories {
 	mavenCentral()
 }
 
+compileJava.dependsOn('openApiGenerate')
+
+openApiValidate {
+    inputSpec = "$projectDir/openapi_yaml/api.yaml".toString()
+}
+
+openApiGenerate {
+    generatorName = "spring"
+    library = "spring-boot"
+    inputSpec = "$projectDir/openapi_yaml/api.yaml".toString()
+    outputDir = "$projectDir".toString()
+    globalProperties = [
+        modelDocs      : "false",
+        models         : "",
+        apis           : "",
+        supportingFiles: "false"
+    ]
+    configOptions = [
+            useOptional          : "true",
+            performBeanValidation: "false",
+            useBeanValidation    : "true",
+            useTags              : "true",
+            singleContentTypes   : "true",
+            title                : projectDir.name,
+            java8                : "false",
+            serializableModel    : "true",
+            artifactId           : projectDir.name,
+            interfaceOnly        : "true",
+            apiPackage           : "com.homework.workmotion.generated.api",
+            modelPackage         : "com.homework.workmotion.generated.dto",
+            invokerPackage       : "com.homework.workmotion.generated"
+    ]
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.statemachine:spring-statemachine-core:3.2.0'
+    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation 'io.springfox:springfox-swagger2:3.0.0'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.5'
+	implementation "mysql:mysql-connector-java:8.0.22"
+	
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'com.h2database:h2'
 }
 
 tasks.named('test') {

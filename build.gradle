@@ -47,19 +47,36 @@ openApiGenerate {
     ]
 }
 
+ext {
+	springStateMachineVersion = '3.2.0'
+	swaggerVersion = '3.0.0'
+	jacksonDatabindVersion = '0.2.4'
+	mySqlConnectorVersion = '8.0.31'
+	cucumberVersion = '6.9.0'
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.statemachine:spring-statemachine-core:3.2.0'
-    implementation 'io.springfox:springfox-swagger-ui:3.0.0'
-    implementation 'io.springfox:springfox-swagger2:3.0.0'
-    implementation 'org.openapitools:jackson-databind-nullable:0.2.4'
-    implementation 'org.springframework.boot:spring-boot-starter-validation:2.7.5'
-	implementation "mysql:mysql-connector-java:8.0.22"
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation "org.springframework.statemachine:spring-statemachine-core:$springStateMachineVersion"
+    implementation "io.springfox:springfox-swagger-ui:$swaggerVersion"
+    implementation "io.springfox:springfox-swagger2:$swaggerVersion"
+    implementation "org.openapitools:jackson-databind-nullable:$jacksonDatabindVersion"
+	implementation "com.mysql:mysql-connector-j:$mySqlConnectorVersion"
 	
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+       exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+       exclude group: 'org.junit.vintage', module: 'junit-jupiter'
+       exclude group: 'org.junit.vintage', module: 'junit-jupiter-api'
+    }
+	testImplementation "io.cucumber:cucumber-core:$cucumberVersion"
+	testImplementation "io.cucumber:cucumber-java:$cucumberVersion"
+	testImplementation "io.cucumber:cucumber-junit:$cucumberVersion"
+	testImplementation "io.cucumber:cucumber-spring:$cucumberVersion"
+	testImplementation "io.cucumber:cucumber-junit-platform-engine:$cucumberVersion"
 	testImplementation 'com.h2database:h2'
 }
 

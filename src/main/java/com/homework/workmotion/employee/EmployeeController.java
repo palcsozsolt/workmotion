@@ -31,11 +31,11 @@ public class EmployeeController implements EmployeeRestApi {
 	@Override
 	public ResponseEntity<EmployeeDetails> createEmployee(@Valid EmployeeDetails employee) {
 
-		LOG.info("New employee request {0}", employee.toString());
+		LOG.info("New employee request {0}", employee);
 
 		EmployeeDetails result = employeeService.createEmployee(employee);
 
-		LOG.debug("Returning new employee {0}", result.toString());
+		LOG.debug("Returning new employee {0}", result);
 		return ResponseEntity.ok().body(result);
 	}
 
@@ -47,7 +47,7 @@ public class EmployeeController implements EmployeeRestApi {
 
 		EmployeeDetails result = employeeService.readEmployee(employeeId);
 
-		LOG.debug("Returning employee {0}", result.toString());
+		LOG.debug("Returning employee {0}", result);
 		return ResponseEntity.ok().body(result);
 	}
 
@@ -55,11 +55,11 @@ public class EmployeeController implements EmployeeRestApi {
 	@Override
 	public ResponseEntity<EmployeeDetails> updateEmployee(UUID employeeId, @Valid EmployeeDetails employee) {
 
-		LOG.info("Update employee request {0}", employee.toString());
+		LOG.info("Update employee request {0}", employee);
 
 		EmployeeDetails result = employeeService.updateEmployee(employee);
 
-		LOG.debug("Returning employee {0}", result.toString());
+		LOG.debug("Returning employee {0}", result);
 		return ResponseEntity.ok().body(result);
 	}
 

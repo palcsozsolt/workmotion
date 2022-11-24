@@ -1,4 +1,4 @@
-package com.homework.workmotion;
+package com.homework.workmotion.config;
 
 import java.util.HashMap;
 
@@ -37,6 +37,7 @@ public class Config {
 		final HashMap<String, Object> properties = new HashMap<String, Object>();
 		properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
 		properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+		properties.put("hibernate.physical_naming_strategy", "com.homework.workmotion.config.CustomPhysicalNamingStrategy");
 		em.setJpaPropertyMap(properties);
 
 		return em;

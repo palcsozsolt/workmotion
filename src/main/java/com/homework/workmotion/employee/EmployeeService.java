@@ -2,17 +2,19 @@ package com.homework.workmotion.employee;
 
 import java.util.UUID;
 
-import com.homework.workmotion.generated.dto.EmployeeDetails;
+import com.homework.workmotion.generated.model.EmployeeDetails;
+import com.homework.workmotion.generated.model.EmployeeStateUpdate;
+import com.homework.workmotion.generated.model.NewEmployee;
 
 public interface EmployeeService {
 
 	/**
 	 * Create new employee
 	 * 
-	 * @param employee
+	 * @param newEmployee
 	 * @return
 	 */
-	public EmployeeDetails createEmployee(EmployeeDetails employee);
+	public EmployeeDetails createEmployee(NewEmployee newEmployee);
 
 	/**
 	 * Find employee by id
@@ -28,5 +30,5 @@ public interface EmployeeService {
 	 * @param employee
 	 * @return
 	 */
-	public EmployeeDetails updateEmployee(EmployeeDetails employee);
+	public EmployeeDetails updateEmployeeState(EmployeeStateUpdate employee);
 }

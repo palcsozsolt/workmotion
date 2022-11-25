@@ -1,0 +1,5 @@
+required:
+  - stateTransition
+properties:
+  stateTransition:
+    $ref: './state/EmployeeStateTransition.yaml'

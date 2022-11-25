@@ -42,7 +42,7 @@ openApiGenerate {
             artifactId           : projectDir.name,
             interfaceOnly        : "true",
             apiPackage           : "com.homework.workmotion.generated.api",
-            modelPackage         : "com.homework.workmotion.generated.dto",
+            modelPackage         : "com.homework.workmotion.generated.model",
             invokerPackage       : "com.homework.workmotion.generated"
     ]
 }

@@ -1,5 +1,7 @@
 required:
+  - id
   - name
+  - employeeState
 properties:
   id:
     type: string
@@ -17,5 +19,9 @@ properties:
     format: email
   address:
     type: string
-  state:
-    $ref: './EmployeeState.yaml'
+  employeeState:
+    $ref: './state/EmployeeState.yaml'
+  securityCheckState:
+    $ref: './state/EmployeeSecurityCheckState.yaml'
+  workPermitCheckState:
+    $ref: './state/EmployeeWorkPermitCheckState.yaml'

@@ -4,12 +4,14 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.homework.workmotion.generated.dto.EmployeeDetails;
+import com.homework.workmotion.generated.model.EmployeeDetails;
+import com.homework.workmotion.generated.model.EmployeeStateUpdate;
+import com.homework.workmotion.generated.model.NewEmployee;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-	public EmployeeDetails createEmployee(EmployeeDetails employee) {
+	public EmployeeDetails createEmployee(NewEmployee employee) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -19,7 +21,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return null;
 	}
 
-	public EmployeeDetails updateEmployee(EmployeeDetails employee) {
+	public EmployeeDetails updateEmployeeState(EmployeeStateUpdate employee) {
 		// TODO Auto-generated method stub
 		return null;
 	}

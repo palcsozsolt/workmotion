@@ -5,12 +5,11 @@ import java.util.HashMap;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -21,10 +20,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.homework.workmotion")
-public class Config {
+public class DatabaseConfig {
 
-	@Autowired
-	private Environment env;
+	@Value("${hibernate.hbm2ddl.auto}")
+	private String hbm2ddlAuto;
+
+	@Value("${hibernate.dialect}")
+	private String dialect;
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -35,8 +37,8 @@ public class Config {
 		final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
 		final HashMap<String, Object> properties = new HashMap<String, Object>();
-		properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-		properties.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
+		properties.put("hibernate.hbm2ddl.auto", hbm2ddlAuto);
+		properties.put("hibernate.dialect", dialect);
 		properties.put("hibernate.physical_naming_strategy", "com.homework.workmotion.config.CustomPhysicalNamingStrategy");
 		em.setJpaPropertyMap(properties);
 

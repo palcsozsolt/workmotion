@@ -19,7 +19,7 @@ get:
     '500':
       $ref: './model/error/ServerError.yaml'
             
-put:
+patch:
   tags:
     - EmployeeRest
   summary: Update Employee
@@ -31,7 +31,7 @@ put:
     content:
       application/json:
         schema:
-          $ref: './model/employee/EmployeeDetails.yaml'
+          $ref: './model/employee/EmployeeStateUpdate.yaml'
   responses:
     '200':
       description: Update Employee.

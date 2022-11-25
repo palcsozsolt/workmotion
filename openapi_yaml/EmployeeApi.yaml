@@ -8,7 +8,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: './model/employee/EmployeeDetails.yaml'
+          $ref: './model/employee/NewEmployee.yaml'
   responses:
     '201':
       description: Create Employee.

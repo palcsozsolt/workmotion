@@ -11,14 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.homework.workmotion.exception.RestExceptionHandler;
 import com.homework.workmotion.generated.api.EmployeeRestApi;
-import com.homework.workmotion.generated.dto.EmployeeDetails;
+import com.homework.workmotion.generated.model.EmployeeDetails;
+import com.homework.workmotion.generated.model.EmployeeStateUpdate;
+import com.homework.workmotion.generated.model.NewEmployee;
 
 @RestController("/employee")
 public class EmployeeController implements EmployeeRestApi {
 
-	private static final Logger LOG = LoggerFactory.getLogger(RestExceptionHandler.class);
+	private static final Logger LOG = LoggerFactory.getLogger(EmployeeController.class);
 
 	private EmployeeService employeeService;
 
@@ -29,11 +30,11 @@ public class EmployeeController implements EmployeeRestApi {
 
 	@Transactional
 	@Override
-	public ResponseEntity<EmployeeDetails> createEmployee(@Valid EmployeeDetails employee) {
+	public ResponseEntity<EmployeeDetails> createEmployee(@Valid NewEmployee newEmployee) {
 
-		LOG.info("New employee request {0}", employee);
+		LOG.info("New employee request {0}", newEmployee);
 
-		EmployeeDetails result = employeeService.createEmployee(employee);
+		EmployeeDetails result = employeeService.createEmployee(newEmployee);
 
 		LOG.debug("Returning new employee {0}", result);
 		return ResponseEntity.ok().body(result);
@@ -53,11 +54,11 @@ public class EmployeeController implements EmployeeRestApi {
 
 	@Transactional
 	@Override
-	public ResponseEntity<EmployeeDetails> updateEmployee(UUID employeeId, @Valid EmployeeDetails employee) {
+	public ResponseEntity<EmployeeDetails> updateEmployee(UUID employeeId, @Valid EmployeeStateUpdate employeeStateUpdate) {
 
-		LOG.info("Update employee request {0}", employee);
+		LOG.info("Update employee request {0}", employeeStateUpdate);
 
-		EmployeeDetails result = employeeService.updateEmployee(employee);
+		EmployeeDetails result = employeeService.updateEmployeeState(employeeStateUpdate);
 
 		LOG.debug("Returning employee {0}", result);
 		return ResponseEntity.ok().body(result);

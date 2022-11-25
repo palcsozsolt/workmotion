@@ -1,0 +1,16 @@
+required:
+  - name
+properties:
+  name:
+    type: string
+  age:
+    type: integer
+    minimum: 0
+    maximum: 150
+  phone:
+    type: string
+  email:
+    type: string
+    format: email
+  address:
+    type: string
